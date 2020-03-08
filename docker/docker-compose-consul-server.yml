@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  consul-server: &consul-server
+    # build:
+    #    context: ..
+    #    dockerfile: ./docker/Dockerfile
+    image: ${DOCKER_REPOSITORY_NAME}/consul/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+    env_file: ../env/consul.env
+    ports:
+      - ${EXPOSE_PORT_1}
+      - ${EXPOSE_PORT_2}
+      - ${EXPOSE_PORT_3}      
+      - ${EXPOSE_PORT_4}
+      - ${EXPOSE_PORT_5}
+      - ${EXPOSE_PORT_6}
+    # expose:
+    #  - "8380-8382:8380-8382"
+    #  - "8381-8382:8381-8382/udp"
+    #  - "8381:8381"
+    #  - "8382:8382"
+    # networks:
+    #   - consulnet
+    volumes:
+      - ${CONSUL_DATA_VOLUME}:/consul/data
+    command: ${COMPOSE_COMMAND}
+
+  # consul-server:
+  #   <<: *consul-server
+  #  command: "agent -server -retry-join consul-server -client 0.0.0.0"
+
+# networks:
+#   consulnet:

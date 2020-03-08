@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  consul-agent:
+    build: ./docker
+    image: moning-consul:0.1
+    env_file: ./env/consul.env
+    volumes: consuldata:/consul/data
+    networks:
+      - consulnet
+    command: "agent -retry-join consul-server -client 0.0.0.0"
+
+networks:
+  consulnet:
+
+volumes:
+  consuldata:/data/docker/consul/test/consul1

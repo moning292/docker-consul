@@ -1,0 +1,170 @@
+#!/bin/bash
+
+# This file is for preparing all the needed environment variables on the host.
+
+DOCKER_REPOSITORY_NAME=localhost:8081/docker
+DOCKER_IMAGE_NAME=moning-consul
+DOCKER_IMAGE_TAG=0.1
+CONSUL_BOOTSTRAP_NO=1
+COMPOSE_PROJECT_NAME=project1
+# CONSUL_PRIMARY_SERVER is used with -retry-join option
+CONSUL_PRIMARY_ADDR=DockerHostIP
+# CONSUL_ADVERTISE_ADDR is used with -advertise option
+CONSUL_ADVERTISE_ADDR=DockerHostIP
+CONSUL_DATA_VOLUME=/backup/data/consul/test/consul2
+EXPOSE_PORT_1="8400:8400"
+EXPOSE_PORT_2="8500:8500"
+EXPOSE_PORT_3="8600:8600"
+EXPOSE_PORT_4="8600:8600/udp"
+EXPOSE_PORT_5="8300-8302:8300-8302"
+EXPOSE_PORT_6="8301-8302:8301-8302/udp"
+
+# DOCKER_REPOSITORY_NAME
+if [[ -z "${BAMBOO_DOCKER_REPOSITORY_NAME}" ]]
+then
+    echo "BAMBOO_DOCKER_REPOSITORY_NAME is empty"
+    export DOCKER_REPOSITORY_NAME=${DOCKER_REPOSITORY_NAME}
+else
+    export DOCKER_REPOSITORY_NAME=${BAMBOO_DOCKER_REPOSITORY_NAME}
+fi
+echo "DOCKER_REPOSITORY_NAME = ${DOCKER_REPOSITORY_NAME}"
+
+# DOCKER_IMAGE_NAME
+export DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME}
+echo "DOCKER_IMAGE_NAME = ${DOCKER_IMAGE_NAME}"
+# if [[ -z "${BAMBOO_DOCKER_IMAGE_NAME}" ]]
+# then
+#     echo "BAMBOO_DOCKER_IMAGE_NAME is empty"
+#     export DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME}
+# else
+#     export DOCKER_IMAGE_NAME=${BAMBOO_DOCKER_IMAGE_NAME}
+# fi
+# echo "DOCKER_IMAGE_NAME = ${DOCKER_IMAGE_NAME}"
+
+# DOCKER_IMAGE_TAG
+export DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}
+echo "DOCKER_IMAGE_TAG = ${DOCKER_IMAGE_TAG}"
+# if [[ -z "${BAMBOO_DOCKER_IMAGE_TAG}" ]]
+# then
+#     echo "BAMBOO_DOCKER_IMAGE_TAG is empty"
+#     export DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}
+# else
+#     export DOCKER_IMAGE_TAG=${BAMBOO_DOCKER_IMAGE_TAG}
+# fi
+# echo "DOCKER_IMAGE_TAG = ${DOCKER_IMAGE_TAG}"
+
+# CONSUL_BOOTSTRAP_NO
+if [[ -z "${BAMBOO_CONSUL_BOOTSTRAP_NO}" ]]
+then
+    echo "BAMBOO_CONSUL_BOOTSTRAP_NO is empty"
+    export CONSUL_BOOTSTRAP_NO=${CONSUL_BOOTSTRAP_NO}
+else
+    export CONSUL_BOOTSTRAP_NO=${BAMBOO_CONSUL_BOOTSTRAP_NO}
+fi
+echo "CONSUL_BOOTSTRAP_NO = ${CONSUL_BOOTSTRAP_NO}"
+
+# COMPOSE_PROJECT_NAME
+if [[ -z "${BAMBOO_COMPOSE_PROJECT_NAME}" ]]
+then
+    echo "BAMBOO_COMPOSE_PROJECT_NAME is empty"
+    export COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME}
+else
+    export COMPOSE_PROJECT_NAME=${BAMBOO_COMPOSE_PROJECT_NAME}
+fi
+echo "COMPOSE_PROJECT_NAME = ${COMPOSE_PROJECT_NAME}"
+
+# CONSUL_PRIMARY_ADDR
+if [[ -z "${BAMBOO_CONSUL_PRIMARY_ADDR}" ]]
+then
+    echo "BAMBOO_CONSUL_PRIMARY_ADDR is empty"
+    export CONSUL_PRIMARY_ADDR=${CONSUL_PRIMARY_ADDR}
+else
+    export CONSUL_PRIMARY_ADDR=${BAMBOO_CONSUL_PRIMARY_ADDR}
+fi
+echo "CONSUL_PRIMARY_ADDR = ${CONSUL_PRIMARY_ADDR}"
+
+# CONSUL_ADVERTISE_ADDR
+if [[ -z "${BAMBOO_CONSUL_ADVERTISE_ADDR}" ]]
+then
+    echo "BAMBOO_CONSUL_ADVERTISE_ADDR is empty"
+    export CONSUL_ADVERTISE_ADDR=${CONSUL_ADVERTISE_ADDR}
+else
+    export CONSUL_ADVERTISE_ADDR=${BAMBOO_CONSUL_ADVERTISE_ADDR}
+fi
+echo "CONSUL_ADVERTISE_ADDR = ${CONSUL_ADVERTISE_ADDR}"
+
+# CONSUL_DATA_VOLUME
+if [[ -z "${BAMBOO_CONSUL_DATA_VOLUME}" ]]
+then
+    echo "BAMBOO_CONSUL_DATA_VOLUME is empty"
+    export CONSUL_DATA_VOLUME=${CONSUL_DATA_VOLUME}
+else
+    export CONSUL_DATA_VOLUME=${BAMBOO_CONSUL_DATA_VOLUME}
+fi
+echo "CONSUL_DATA_VOLUME = ${CONSUL_DATA_VOLUME}"
+
+# EXPOSE_PORT_1
+if [[ -z "${BAMBOO_EXPOSE_PORT_1}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_1 is empty"
+    export EXPOSE_PORT_1=${EXPOSE_PORT_1}
+else
+    export EXPOSE_PORT_1=${BAMBOO_EXPOSE_PORT_1}
+fi
+echo "EXPOSE_PORT_1 = ${EXPOSE_PORT_1}"
+
+# EXPOSE_PORT_2
+if [[ -z "${BAMBOO_EXPOSE_PORT_2}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_2 is empty"
+    export EXPOSE_PORT_2=${EXPOSE_PORT_2}
+else
+    export EXPOSE_PORT_2=${BAMBOO_EXPOSE_PORT_2}
+fi
+echo "EXPOSE_PORT_2 = ${EXPOSE_PORT_2}"
+
+# EXPOSE_PORT_3
+if [[ -z "${BAMBOO_EXPOSE_PORT_3}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_3 is empty"
+    export EXPOSE_PORT_3=${EXPOSE_PORT_3}
+else
+    export EXPOSE_PORT_3=${BAMBOO_EXPOSE_PORT_3}
+fi
+echo "EXPOSE_PORT_3 = ${EXPOSE_PORT_3}"
+
+# EXPOSE_PORT_4
+if [[ -z "${BAMBOO_EXPOSE_PORT_4}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_4 is empty"
+    export EXPOSE_PORT_4=${EXPOSE_PORT_4}
+else
+    export EXPOSE_PORT_4=${BAMBOO_EXPOSE_PORT_4}
+fi
+echo "EXPOSE_PORT_4 = ${EXPOSE_PORT_4}"
+
+# EXPOSE_PORT_5
+if [[ -z "${BAMBOO_EXPOSE_PORT_5}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_5 is empty"
+    export EXPOSE_PORT_5=${EXPOSE_PORT_5}
+else
+    export EXPOSE_PORT_5=${BAMBOO_EXPOSE_PORT_5}
+fi
+echo "EXPOSE_PORT_5 = ${EXPOSE_PORT_5}"
+
+# EXPOSE_PORT_6
+if [[ -z "${BAMBOO_EXPOSE_PORT_6}" ]]
+then
+    echo "BAMBOO_EXPOSE_PORT_6 is empty"
+    export EXPOSE_PORT_6=${EXPOSE_PORT_6}
+else
+    export EXPOSE_PORT_6=${BAMBOO_EXPOSE_PORT_6}
+fi
+echo "EXPOSE_PORT_6 = ${EXPOSE_PORT_6}"
+
+# ------------------------------------------------------------------------------------
+# ============Command for the primary Consul server node============
+export COMPOSE_COMMAND="agent -server -node ${COMPOSE_PROJECT_NAME} -bootstrap-expect ${CONSUL_BOOTSTRAP_NO} -ui -client 0.0.0.0 -advertise ${CONSUL_ADVERTISE_ADDR}"
+# ============Command for the rest of Consul server nodes============
+# export COMPOSE_COMMAND="agent -server -node ${COMPOSE_PROJECT_NAME} -bootstrap-expect ${CONSUL_BOOTSTRAP_NO} -ui -advertise ${CONSUL_ADVERTISE_ADDR} -retry-join ${CONSUL_PRIMARY_ADDR}"
